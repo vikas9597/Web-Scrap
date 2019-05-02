@@ -1,0 +1,16 @@
+from bs4 import BeautifulSoup
+import requests
+
+website_address ="http://quotes.toscrape.com"
+result=requests.get(website_address)
+soup =BeautifulSoup(result.text,"html.parser")
+
+quote =soup.findAll("div",{"class":"quote"})
+
+
+for i in quote:
+    quotation =i.find("span",{"class":"text"}).text
+    print(quotation)
+
+    author =i.find("small",{"class":"author"}).text
+    print(author)
